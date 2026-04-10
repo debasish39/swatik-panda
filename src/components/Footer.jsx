@@ -18,11 +18,11 @@ export default function Footer() {
         {/* Brand Info */}
         <div>
           <h3 className="text-2xl font-bold text-white">
-            Chandan Kumar
+            Swati Pragnya Panda
           </h3>
           <p className="mt-3 text-sm leading-relaxed">
-            Actor, performer, and creative artist from Paradip, currently based in Bhubaneswar. 
-            Passionate about storytelling through acting, music, and visual expression.
+            Aspiring artist from Cuttack, currently based in Cuttack. 
+            Passionate about creativity, performance, and self-expression.
           </p>
         </div>
 
@@ -42,7 +42,6 @@ export default function Footer() {
           <h4 className="text-xl font-semibold mb-3 text-white">Follow Me</h4>
           <div className="flex gap-4 justify-center sm:justify-start flex-wrap">
 
-            {/* Facebook */}
             <a
               href="https://www.facebook.com/"
               target="_blank"
@@ -54,7 +53,6 @@ export default function Footer() {
               <FaFacebookF />
             </a>
 
-            {/* Instagram */}
             <a
               href="https://www.instagram.com/swati_official.93"
               target="_blank"
@@ -66,7 +64,6 @@ export default function Footer() {
               <FaInstagram />
             </a>
 
-            {/* YouTube */}
             <a
               href="https://youtube.com/@swatipragnyapanda"
               target="_blank"
@@ -78,7 +75,6 @@ export default function Footer() {
               <FaYoutube />
             </a>
 
-            {/* WhatsApp */}
             <a
               href="https://wa.me/919XXXXXXXXX"
               target="_blank"
@@ -96,7 +92,7 @@ export default function Footer() {
 
       {/* Copyright */}
       <div className="mt-12 text-center text-xs text-stone-500 border-t border-white/10 pt-4">
-        © {new Date().getFullYear()} Chandan Kumar. All rights reserved.
+        © {new Date().getFullYear()} Swati Pragnya Panda. All rights reserved.
       </div>
 
     </footer>

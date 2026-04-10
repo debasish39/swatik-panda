@@ -23,6 +23,7 @@ export default function Navbar() {
     AOS.init({ duration: 600 });
   }, []);
 
+  // 🔽 Hide/Show Navbar on Scroll
   useEffect(() => {
     const handleScroll = () => {
       const currentY = window.scrollY;
@@ -40,6 +41,25 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
+  // 🔥 Scroll Spy (auto active section)
+  useEffect(() => {
+    const handleScrollSpy = () => {
+      let current = "#hero";
+
+      document.querySelectorAll("section").forEach((section) => {
+        const sectionTop = section.offsetTop - 120;
+        if (window.scrollY >= sectionTop) {
+          current = `#${section.id}`;
+        }
+      });
+
+      setActive(current);
+    };
+
+    window.addEventListener("scroll", handleScrollSpy);
+    return () => window.removeEventListener("scroll", handleScrollSpy);
+  }, []);
+
   const navLinks = [
     { name: "Home", href: "#hero", icon: <FaHome /> },
     { name: "About", href: "#about", icon: <FaUser /> },
@@ -48,25 +68,13 @@ export default function Navbar() {
     { name: "Contact", href: "#contact", icon: <FaEnvelope /> },
   ];
 
-  // ✅ Social Links (same as Footer)
   const socialLinks = [
-    {
-      icon: FaFacebook,
-      url: "https://www.facebook.com/",
-    },
-    {
-      icon: FaInstagram,
-      url: "https://www.instagram.com/swati_official.93?igsh=MWg0NTR0cnV3N2N5cA%3D%3D",
-    },
-    {
-      icon: FaYoutube,
-      url: "https://www.youtube.com/",
-    },
-    {
-      icon: FaShareAlt,
-      action: "share", // 👈 custom action instead of URL
-    },
+    { icon: FaFacebook, url: "https://www.facebook.com/" },
+    { icon: FaInstagram, url: "https://www.instagram.com/swati_official.93" },
+    { icon: FaYoutube, url: "https://youtube.com/@swatipragnyapanda" },
+    { icon: FaShareAlt, action: "share" },
   ];
+
   const handleShare = () => {
     if (navigator.share) {
       navigator.share({
@@ -75,30 +83,34 @@ export default function Navbar() {
         url: window.location.href,
       });
     } else {
-      alert("Sharing not supported on this browser");
+      navigator.clipboard.writeText(window.location.href);
+      alert("Link copied!");
     }
   };
+
+  const navBg =
+    "bg-gradient-to-r from-[#0a0a0f]/80 via-[#111118]/70 to-[#0a0a0f]/80 backdrop-blur-2xl border border-pink-500/10 shadow-[0_8px_40px_rgba(255,0,182,0.15)]";
+
   return (
     <>
       {/* ================= Desktop Navbar ================= */}
       <nav
         className={`hidden md:block fixed top-3 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl z-50 
-        transition-all duration-500 ${showNavbar ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-18"
-          }
-        bg-white/5 backdrop-blur-xl border border-white/10 
-        rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.5)]`}
+        transition-all duration-500 
+        ${showNavbar ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-18"}
+        ${navBg} rounded-2xl`}
         data-aos="fade-down"
       >
         <div className="flex items-center justify-between px-6 py-3">
 
           {/* Logo */}
           <a href="#hero" className="flex items-center gap-2 text-xl font-semibold group">
-            <FaFeatherAlt className="text-white group-hover:rotate-12 transition" />
+            <FaFeatherAlt className="text-pink-400 group-hover:rotate-12 transition" />
             <span
               className="text-xl bg-gradient-to-r from-white to-gray-400 text-transparent bg-clip-text"
               style={{ fontFamily: "Lobster, cursive" }}
             >
-              Chandan Kumar
+              Swatik
             </span>
           </a>
 
@@ -108,18 +120,21 @@ export default function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                onClick={() => setActive(link.href)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.querySelector(link.href)?.scrollIntoView({ behavior: "smooth" });
+                  setActive(link.href);
+                }}
                 className={`relative px-3 py-1 text-sm font-medium transition-all duration-300
-                ${active === link.href
-                    ? "text-white"
+                ${
+                  active === link.href
+                    ? "text-white drop-shadow-[0_0_8px_rgba(255,0,182,0.8)]"
                     : "text-stone-400 hover:text-white"
-                  }`}
+                }`}
               >
                 {link.name}
-
-                {/* Active underline */}
                 {active === link.href && (
-                  <span className="absolute left-0 bottom-0 w-full h-[2px] bg-white rounded-full" />
+                  <span className="absolute left-0 bottom-0 w-full h-[2px] bg-pink-400 rounded-full" />
                 )}
               </a>
             ))}
@@ -140,9 +155,9 @@ export default function Navbar() {
                     }}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 bg-white/5 rounded-full hover:bg-white/10 
-                    hover:shadow-[0_0_12px_rgba(255,255,255,0.3)]
-                    transition duration-300"
+                    className="p-2 bg-white/5 rounded-full transition duration-300
+                    hover:bg-pink-500/20 hover:scale-110
+                    hover:shadow-[0_0_12px_rgba(255,0,182,0.5)]"
                   >
                     <Icon />
                   </a>
@@ -156,27 +171,16 @@ export default function Navbar() {
       {/* ================= Mobile Top Navbar ================= */}
       <div
         className={`md:hidden fixed top-3 left-1/2 -translate-x-1/2 w-[96%] max-w-md z-[999] 
-        transition-all duration-500 ease-in-out ${showNavbar
-            ? "translate-y-0 opacity-100"
-            : "-translate-y-10 opacity-0"
-          }
-        bg-white/5 backdrop-blur-xl border border-white/10 
-        rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.6)]`}
+        transition-all duration-500 ${showNavbar ? "translate-y-0 opacity-100" : "-translate-y-10 opacity-0"}
+        ${navBg} rounded-2xl`}
       >
         <div className="flex items-center justify-between px-4 py-3">
 
-          {/* Logo */}
-          <div className="flex items-center gap-2 group">
-            <FaFeatherAlt className="text-white text-lg transition group-hover:rotate-12" />
-            <span
-              className="text-lg bg-gradient-to-r from-white to-gray-400 text-transparent bg-clip-text font-semibold"
-              style={{ fontFamily: "Lobster, cursive" }}
-            >
-              Chandan Kumar
-            </span>
+          <div className="flex items-center gap-2">
+            <FaFeatherAlt className="text-pink-400" />
+            <span className="text-lg text-white font-semibold">Chandan Kumar</span>
           </div>
 
-          {/* Social Icons */}
           <div className="flex gap-3 text-lg">
             {socialLinks.map((item, i) => {
               const Icon = item.icon;
@@ -190,14 +194,9 @@ export default function Navbar() {
                       handleShare();
                     }
                   }}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 rounded-full bg-white/5 hover:bg-white/10 
-                  transition duration-300 
-                  hover:scale-110 
-                  hover:shadow-[0_0_10px_rgba(255,255,255,0.3)]"
+                  className="p-2 bg-white/5 rounded-full hover:bg-pink-500/20 transition"
                 >
-                  <Icon className="text-white" />
+                  <Icon />
                 </a>
               );
             })}
@@ -208,31 +207,25 @@ export default function Navbar() {
       {/* ================= Mobile Bottom Navbar ================= */}
       <div
         className={`md:hidden fixed bottom-4 left-1/2 -translate-x-1/2 w-[92%] max-w-md z-[999] 
-        transition-all duration-500 ease-in-out
-        ${showNavbar
-            ? "translate-y-0 opacity-100"
-            : "translate-y-20 opacity-0"
-          }
-        bg-white/5 backdrop-blur-xl border border-white/10 
-        rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.6)]
-        flex justify-around items-center py-3`}
+        transition-all duration-500 ${showNavbar ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"}
+        ${navBg} rounded-2xl flex justify-around items-center py-3`}
       >
         {navLinks.map((link) => (
           <a
             key={link.name}
             href={link.href}
-            onClick={() => setActive(link.href)}
-            className={`flex flex-col items-center text-xs transition-all duration-300 ${active === link.href
-              ? "text-white scale-110"
-              : "text-stone-400"
-              }`}
+            onClick={(e) => {
+              e.preventDefault();
+              document.querySelector(link.href)?.scrollIntoView({ behavior: "smooth" });
+              setActive(link.href);
+            }}
+            className={`flex flex-col items-center text-xs transition-all duration-300
+            ${active === link.href ? "text-white scale-110" : "text-stone-400"}`}
           >
             <span className="text-lg">{link.icon}</span>
             {link.name}
-
-            {/* Active Dot */}
             {active === link.href && (
-              <span className="mt-1 w-1.5 h-1.5 bg-white rounded-full" />
+              <span className="mt-1 w-1.5 h-1.5 bg-pink-400 rounded-full" />
             )}
           </a>
         ))}

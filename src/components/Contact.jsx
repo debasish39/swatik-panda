@@ -15,29 +15,21 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (loading) return;
 
     const form = e.target;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
-    // 🔥 VALIDATION
+    // Validation
     if (!data.name || !data.email || !data.message) {
       toast.error("All fields are required ⚠️");
-
-      if (!data.name) form.elements.name.focus();
-      else if (!data.email) form.elements.email.focus();
-      else if (!data.message) form.elements.message.focus();
-
       return;
     }
 
-    // 🔥 EMAIL VALIDATION
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(data.email)) {
-      toast.error("Enter a valid email address 📧");
-      form.elements.email.focus();
+      toast.error("Enter a valid email 📧");
       return;
     }
 
@@ -56,30 +48,33 @@ export default function Contact() {
       toast.dismiss(loadingToast);
 
       if (response.data.success) {
-        toast.success("Message sent successfully 🚀");
+        toast.success("Message sent 🚀");
         form.reset();
       } else {
-        toast.error("Something went wrong. Try again.");
+        toast.error("Something went wrong");
       }
 
     } catch (error) {
       toast.dismiss(loadingToast);
-      toast.error("Submission failed. Please try again.");
+      toast.error("Submission failed");
     }
 
     setLoading(false);
   };
 
   return (
-    <section id="contact" className="px-6 py-16 text-white">
-      <div className="max-w-4xl mx-auto text-center" data-aos="fade-up">
+    <section id="contact" className="px-6 py-3 text-pink-100">
+
+      <div className="max-w-6xl mx-auto text-center" data-aos="fade-up">
 
         {/* Title */}
-        <h2 className="text-3xl sm:text-4xl font-bold mb-6">
+        <h2 className="text-3xl sm:text-5xl font-bold mb-6 
+          bg-gradient-to-r from-pink-300 via-rose-200 to-purple-300 
+          text-transparent bg-clip-text">
           Contact Me
         </h2>
 
-        <p className="mb-10 text-stone-300 text-lg">
+        <p className="mb-12 text-stone-400 text-lg">
           Feel free to reach out. I’ll get back to you as soon as possible.
         </p>
 
@@ -92,10 +87,11 @@ export default function Contact() {
             name="name"
             placeholder="Your Name"
             data-aos="fade-right"
-            data-aos-delay="300"
-            className="w-full px-4 py-3 rounded-lg bg-transparent text-white 
-                       placeholder-stone-400 border border-gray-600 
-                       focus:outline-none focus:ring-2 focus:ring-stone-500"
+            className="w-full px-4 py-3 rounded-xl 
+            bg-white/5 backdrop-blur-xl border border-white/10
+            text-white placeholder-stone-400
+            focus:outline-none focus:ring-2 focus:ring-pink-400/50
+            focus:border-pink-400/40 transition duration-300"
           />
 
           {/* Email */}
@@ -104,10 +100,11 @@ export default function Contact() {
             name="email"
             placeholder="Your Email"
             data-aos="fade-left"
-            data-aos-delay="400"
-            className="w-full px-4 py-3 rounded-lg bg-transparent text-white 
-                       placeholder-stone-400 border border-gray-600 
-                       focus:outline-none focus:ring-2 focus:ring-stone-500"
+            className="w-full px-4 py-3 rounded-xl 
+            bg-white/5 backdrop-blur-xl border border-white/10
+            text-white placeholder-stone-400
+            focus:outline-none focus:ring-2 focus:ring-pink-400/50
+            focus:border-pink-400/40 transition duration-300"
           />
 
           {/* Message */}
@@ -116,10 +113,11 @@ export default function Contact() {
             rows="5"
             placeholder="Your Message"
             data-aos="fade-up"
-            data-aos-delay="500"
-            className="w-full px-4 py-3 rounded-lg bg-transparent text-white 
-                       placeholder-stone-400 border border-gray-600 
-                       focus:outline-none focus:ring-2 focus:ring-stone-500"
+            className="w-full px-4 py-3 rounded-xl 
+            bg-white/5 backdrop-blur-xl border border-white/10
+            text-white placeholder-stone-400
+            focus:outline-none focus:ring-2 focus:ring-pink-400/50
+            focus:border-pink-400/40 transition duration-300"
           ></textarea>
 
           {/* Submit Button */}
@@ -127,14 +125,13 @@ export default function Contact() {
             type="submit"
             disabled={loading}
             data-aos="zoom-in"
-            data-aos-delay="600"
-            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-semibold 
-              justify-center transition duration-300
-              ${
-                loading
-                  ? 'bg-gray-500 cursor-not-allowed'
-                  : 'bg-gradient-to-r from-stone-600 to-stone-800 hover:scale-105 hover:shadow-lg'
-              }`}
+          className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold 
+justify-center transition duration-300 cursor-pointer
+${
+  loading
+    ? 'bg-pink-400/40 cursor-not-allowed'
+    : 'bg-gradient-to-r from-pink-500 to-purple-500  hover:shadow-[0_0_20px_rgba(255,0,182,0.6)]'
+}`}
           >
             {loading ? (
               <>
@@ -150,7 +147,6 @@ export default function Contact() {
           </button>
 
         </form>
-
       </div>
     </section>
   );

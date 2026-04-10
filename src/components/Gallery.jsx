@@ -43,6 +43,7 @@ export default function Gallery() {
   const [index, setIndex] = useState(-1);
   const [loading, setLoading] = useState(false);
 
+  // 🔍 Filter logic
   const filteredImages =
     activeFilter === 'All'
       ? categorizedImages
@@ -89,9 +90,7 @@ export default function Gallery() {
       {/* 🖼️ Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
         {visibleImages.map((img, i) => {
-          const realIndex = filteredImages.findIndex(
-            (item) => item.src === img.src
-          );
+          const realIndex = filteredImages.indexOf(img);
 
           return (
             <div
@@ -118,28 +117,7 @@ export default function Gallery() {
                 {img.category}
               </span>
 
-              {/* 🔥 Overlay */}
-              <div className="absolute inset-0 bg-black/40 opacity-0 
-              group-hover:opacity-100 transition duration-300 
-              flex flex-col items-center justify-center gap-3">
 
-                <button
-                  onClick={() => setIndex(realIndex)}
-                  className="flex items-center gap-2 px-3 py-1 text-xs 
-                  bg-white/20 backdrop-blur-md rounded-md hover:bg-white/30"
-                >
-                  <FaEye /> View
-                </button>
-
-                <button
-                  onClick={() => handleDownload(img.src, i)}
-                  className="flex items-center gap-2 px-3 py-1 text-xs 
-                  bg-white/20 backdrop-blur-md rounded-md hover:bg-pink-400/30"
-                >
-                  <FaDownload /> Download
-                </button>
-
-              </div>
             </div>
           );
         })}

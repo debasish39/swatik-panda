@@ -42,46 +42,50 @@ export default function Footer() {
           <h4 className="text-xl font-semibold mb-3 text-white">Follow Me</h4>
           <div className="flex gap-4 justify-center sm:justify-start flex-wrap">
 
+            {/* Facebook */}
             <a
               href="https://www.facebook.com/"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Facebook"
-              className="p-3 bg-white/5 rounded-full hover:bg-white/10 transition 
-                         hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]"
+              title="Facebook"
+              className="p-3 bg-white/5 rounded-full transition transform hover:scale-110
+                         hover:bg-blue-500/20 hover:shadow-[0_0_15px_rgba(59,130,246,0.5)]"
             >
               <FaFacebookF />
             </a>
 
+            {/* Instagram */}
             <a
-              href="https://www.instagram.com/swati_official.93?igsh=MWg0NTR0cnV3N2N5cA%3D%3D"
+              href="https://www.instagram.com/swati_official.93"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Instagram"
-              className="p-3 bg-white/5 rounded-full hover:bg-white/10 transition 
-                         hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]"
+              title="Instagram"
+              className="p-3 bg-white/5 rounded-full transition transform hover:scale-110
+                         hover:bg-pink-500/20 hover:shadow-[0_0_15px_rgba(236,72,153,0.5)]"
             >
               <FaInstagram />
             </a>
 
+            {/* YouTube */}
             <a
-              href="https://youtube.com/@swatipragnyapanda?si=MXMdNJtLCmqFCjdn"
+              href="https://youtube.com/@swatipragnyapanda"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="YouTube"
-              className="p-3 bg-white/5 rounded-full hover:bg-white/10 transition 
-                         hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]"
+              title="YouTube"
+              className="p-3 bg-white/5 rounded-full transition transform hover:scale-110
+                         hover:bg-red-500/20 hover:shadow-[0_0_15px_rgba(239,68,68,0.5)]"
             >
               <FaYoutube />
             </a>
 
+            {/* WhatsApp */}
             <a
-              href="https://wa.me"
+              href="https://wa.me/919XXXXXXXXX"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="WhatsApp"
-              className="p-3 bg-white/5 rounded-full hover:bg-white/10 transition 
-                         hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]"
+              title="WhatsApp"
+              className="p-3 bg-white/5 rounded-full transition transform hover:scale-110
+                         hover:bg-green-500/20 hover:shadow-[0_0_15px_rgba(34,197,94,0.5)]"
             >
               <FaWhatsapp />
             </a>

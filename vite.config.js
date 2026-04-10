@@ -42,41 +42,40 @@ export default defineConfig({
         ],
       },
 
-      manifest: {
-        name: 'Chandan Kumar | Actor Portfolio',
-        short_name: 'Chandan',
+     manifest: {
+  name: 'Swati Pragnya Panda | Portfolio',
+  short_name: 'Swati',
 
-        description: 'Official portfolio of actor Chandan Kumar. Explore gallery, projects, and contact details.',
+  description: 'Official portfolio of Swati Pragnya Panda. Explore profile, gallery, and contact details.',
 
-        start_url: '/',
-        display: 'standalone',
-        orientation: 'portrait',
+  start_url: '/',
+  display: 'standalone',
+  orientation: 'portrait',
 
-        background_color: '#000000',
-        theme_color: '#000000',
+  background_color: '#000000',
+  theme_color: '#000000',
 
-        icons: [
-          {
-            src: '/pwa-192x192.png',
-            sizes: '192x192',
-            type: 'image/png',
-            purpose: 'any',
-          },
-          {
-            src: '/pwa-512x512.png',
-            sizes: '512x512',
-            type: 'image/png',
-            purpose: 'any',
-          },
-          {
-            src: '/pwa-512x512.png',
-            sizes: '512x512',
-            type: 'image/png',
-            purpose: 'maskable', // 🔥 better install UI
-          },
-        ],
-      },
-
+  icons: [
+    {
+      src: '/pwa-192x192.png',
+      sizes: '192x192',
+      type: 'image/png',
+      purpose: 'any',
+    },
+    {
+      src: '/pwa-512x512.png',
+      sizes: '512x512',
+      type: 'image/png',
+      purpose: 'any',
+    },
+    {
+      src: '/pwa-512x512.png',
+      sizes: '512x512',
+      type: 'image/png',
+      purpose: 'maskable',
+    },
+  ],
+},
       devOptions: {
         enabled: true, // 🔥 allows PWA in dev mode
       },

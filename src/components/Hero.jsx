@@ -22,8 +22,8 @@ export default function Hero() {
           <img
             src={Pro}
             alt="Swati Pragnya Panda"
-            className="w-full max-w-[400px] md:max-w-[380px] lg:max-w-[440px] xl:max-w-[480px] 
-            rounded-full shadow-2xl border-4 border-pink-400/30
+            className="w-full max-w-[400px] md:max-w-[380px] max-h-[390px] lg:max-w-[440px] xl:max-w-[480px] 
+            rounded-full shadow-2xl border-1 border-pink-400/30
             transition-transform duration-300 hover:scale-105"
           />
         </div>

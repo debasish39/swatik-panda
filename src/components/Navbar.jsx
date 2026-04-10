@@ -178,7 +178,7 @@ export default function Navbar() {
 
           <div className="flex items-center gap-2">
             <FaFeatherAlt className="text-pink-400" />
-            <span className="text-lg text-white font-semibold">Chandan Kumar</span>
+            <span className="text-lg text-white font-semibold">Swatik</span>
           </div>
 
           <div className="flex gap-3 text-lg">

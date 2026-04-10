@@ -110,7 +110,7 @@ export default function Navbar() {
               className="text-xl bg-gradient-to-r from-white to-gray-400 text-transparent bg-clip-text"
               style={{ fontFamily: "Lobster, cursive" }}
             >
-              Swatik
+              Swati
             </span>
           </a>
 
@@ -178,7 +178,7 @@ export default function Navbar() {
 
           <div className="flex items-center gap-2">
             <FaFeatherAlt className="text-pink-400" />
-            <span className="text-lg text-white font-semibold">Swatik</span>
+            <span className="text-lg text-white font-semibold">Swati</span>
           </div>
 
           <div className="flex gap-3 text-lg">
